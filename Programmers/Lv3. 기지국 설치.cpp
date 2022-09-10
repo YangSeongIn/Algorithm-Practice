@@ -42,3 +42,27 @@ int solution(int n, vector<int> stations, int w)
 
     return answer;
 }
+
+// 간단한 코드
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+int solution(int n, vector<int> stations, int w)
+{
+    int answer = 0;
+    int idx = 0;
+    double range = w * 2 + 1;
+    for (int station : stations)
+    {
+        double a = station - w - 1 - idx;
+        int b = (int)ceil(a / range);
+        answer += max(0, b);
+        idx = station + w;
+    }
+    answer += (int)ceil((double)(n - idx) / range);
+
+    return answer;
+}
